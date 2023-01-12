@@ -1,0 +1,19 @@
+{
+    "name": "ioanstoica/daw2",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ioanstoica\\Daw2\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ioanstoica",
+            "email": "ioanstoica89@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.26",
+        "phpmailer/phpmailer": "^6.7"
+    }
+}

@@ -1,0 +1,1 @@
+<php namespace my\name; class PHPMailer2 { };
