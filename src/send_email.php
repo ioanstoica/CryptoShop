@@ -1,17 +1,16 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use Dotenv\Dotenv;
 
 require $_SERVER['DOCUMENT_ROOT'] . '\vendor\autoload.php';
 
 // load .env file
-$file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/.env');
-$lines = explode("\n", $file);
-foreach ($lines as $line) {
-    $keyValue = explode("=", $line);
-    putenv("{$keyValue[0]}={$keyValue[1]}");
-}
+// $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/.env');
+// $lines = explode("\n", $file);
+// foreach ($lines as $line) {
+//     $keyValue = explode("=", $line);
+//     putenv("{$keyValue[0]}={$keyValue[1]}");
+// }
 
 // Get the form data
 $name = $_POST["name"];
@@ -23,8 +22,8 @@ $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->Host = 'smtp.zoho.eu';
 $mail->SMTPAuth = true;
-$mail->Username = getenv('EMAIL_USERNAME');
-$mail->Password = getenv('EMAIL_PASSWORD');
+$mail->Username = 'ioanstoica@zohomail.eu';
+$mail->Password = 'CcCc246...';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 
