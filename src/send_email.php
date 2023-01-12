@@ -1,7 +1,6 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use Dotenv\Dotenv;
 
 require $_SERVER['DOCUMENT_ROOT'] . '\vendor\autoload.php';
 
