@@ -2,7 +2,7 @@
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-require $_SERVER['DOCUMENT_ROOT'] . '\vendor\autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 // load .env file
 // $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/.env');
