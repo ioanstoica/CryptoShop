@@ -1,32 +1,23 @@
 <?php
 
-// Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "87654321";
-$dbname = "daw";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once "db_connect.php";
+$conn = db_connect();
 
 // Get the form data
-$username = $_POST["username"];
+$email = $_POST["email"];
 $password = $_POST["password"];
 
 // Check if the user exists
-$sql = "SELECT password FROM users WHERE user='$username'";
+$sql = "SELECT password FROM users WHERE email='$email'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // User exists
     $row = $result->fetch_assoc();
     if (password_verify($password, $row["password"])) {
-        // Login successful
         session_start();
-        $_SESSION["username"] = $username;
-        echo "Welcome back, $username";
+        $_SESSION["email"] = $email;
+        echo "Welcome back, $email" . "<br>";
     } else {
         // Wrong password
         echo "Wrong password";
@@ -38,3 +29,5 @@ if ($result->num_rows > 0) {
 
 // Close the database connection
 $conn->close();
+
+echo '<br><br><a href="/index.php">Back</a>';
