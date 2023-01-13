@@ -1,4 +1,7 @@
 <?php
+
+echo '<a href="/index.php">Back</a><br><br>';
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -25,8 +28,11 @@ curl_close($curl);
 if ($err) {
     echo "cURL Error #:" . $err;
 } else {
+    echo 'CoinGecko API response: <br>';
     $data = json_decode($response);
     foreach ($data as $coin) {
         echo $coin->name . ": " . $coin->current_price . "<br>";
     }
 }
+
+echo '<br><br><a href="/index.php">Back</a>';

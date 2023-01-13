@@ -1,4 +1,5 @@
 <?php
+session_start();
 function getPageContents($url)
 {
     $user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0';
@@ -32,19 +33,6 @@ function getPageContents($url)
     return $content;
 }
 
-// Initialize cURL session
-// $ch = curl_init();
-
-// Set cURL options
-// curl_setopt($ch, CURLOPT_URL, "https://coinmarketcap.com/");
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Execute cURL session and store response in $output
-// $output = curl_exec($ch);
-
-// Close cURL session
-// curl_close($ch);
-
 $output = getPageContents("https://coinmarketcap.com/");
 
 // Use regular expressions to extract first div with class "sc-c9eecf69-0 ktISRC"
@@ -59,12 +47,39 @@ echo '
 
 echo '<body>';
 
-echo '<h1>Wellcome to CryptoShop</h1>
-    <a href="/src/login.html">Signup/Login</a><br>
+echo '<h1>Wellcome to CryptoShop</h1>';
+
+if (isset($_SESSION["email"])) {
+    echo 'User: ' . $_SESSION["email"] . '<br>';
+} else {
+    echo 'User: Guest<br>';
+}
+
+echo '<a href="/src/login.html">Signup/Login</a><br>
+    <a href="/src/logout.php">Logout</a><br>
     <a href="/src/contact.html">Contact</a><br>
     <a href="/src/news.php">News</a><br>
-    <a href="/src/market.php"> Market</a><br>
-    <a href="/src/generate_raport.php">Generate raport</a><br>';
+    <a href="/src/market.php"> Market</a><br>';
+
+if (isset($_SESSION["email"])) {
+    echo  '<a href="/src/generate_raport.php">Generate raport</a><br>';
+}
+if (isset($_SESSION["email"])) {
+    // extract role for curent user
+    require_once "src/db_connect.php";
+    $conn = db_connect();
+    $sql = "SELECT role FROM users WHERE email='" . $_SESSION["email"] . "'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $role = $row["role"];
+
+    if ($role == "admin") {
+        echo  '<a href="/src/crud.html">CRUD users</a><br>';
+    }
+
+    // Close the database connection
+    $conn->close();
+}
 
 echo '<br><br>';
 

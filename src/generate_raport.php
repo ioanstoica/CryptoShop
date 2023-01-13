@@ -50,3 +50,5 @@ if ($err) {
     echo 'Excel report generated successfully<br>';
     echo '<a href = "coincap.xlsx" download> Download </a>';
 }
+
+echo '<br><br><a href="/index.php">Back</a>';

@@ -4,14 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
-// load .env file
-// $file = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/.env');
-// $lines = explode("\n", $file);
-// foreach ($lines as $line) {
-//     $keyValue = explode("=", $line);
-//     putenv("{$keyValue[0]}={$keyValue[1]}");
-// }
-
 // Get the form data
 $name = $_POST["name"];
 $email = $_POST["email"];
@@ -46,3 +38,5 @@ if (!$mail->send()) {
 } else {
     echo 'Message has been sent';
 }
+
+echo '<br><br><a href="/index.php">Back</a>';

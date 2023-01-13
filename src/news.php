@@ -14,4 +14,7 @@ if (strpos($count, $ip) === false) {
 $count = count(file($file));
 echo "Wellcome to news page<br>";
 echo "News page visitor count: " . $count . "<br>";
+echo '<a href="/index.php">Back</a><br><br>';
 echo '<iframe src="https://www.coindesk.com/" height="800" width="100%" title="description"></iframe>';
+
+echo '<br><br><a href="/index.php">Back</a>';
